@@ -50,9 +50,21 @@ const projects = [
 ];
 
 const services = [
-  ["01", "Creative direction", "Point of view, rhythm, and rules — calibrated early so the work can stay coherent as it moves."],
-  ["02", "Identity systems", "A visual language with enough structure to repeat, and enough tension to remain alive."],
-  ["03", "Digital experiences", "Interfaces that turn dense signals into a clear next step without sanding away the nuance."],
+  [
+    "01",
+    "Creative direction",
+    "Point of view, rhythm, and rules — calibrated early so the work can stay coherent as it moves.",
+  ],
+  [
+    "02",
+    "Identity systems",
+    "A visual language with enough structure to repeat, and enough tension to remain alive.",
+  ],
+  [
+    "03",
+    "Digital experiences",
+    "Interfaces that turn dense signals into a clear next step without sanding away the nuance.",
+  ],
 ];
 
 function usePointerTilt() {
@@ -95,13 +107,23 @@ function HeroObject() {
   const orbY = useTransform(springX, [-20, 20], [12, -12]);
 
   return (
-    <div ref={ref} className="hero-object-stage" aria-label="Interactive 3D orbit object. Move your cursor across it.">
-      <motion.div className="orbit-rings" style={{ rotateX: springX, rotateY: springY }}>
+    <div
+      ref={ref}
+      className="hero-object-stage"
+      aria-label="Interactive 3D orbit object. Move your cursor across it."
+    >
+      <motion.div
+        className="orbit-rings"
+        style={{ rotateX: springX, rotateY: springY }}
+      >
         <span className="ring ring-one" />
         <span className="ring ring-two" />
         <span className="ring ring-three" />
       </motion.div>
-      <motion.div className="orbital-core" style={{ x: orbX, y: orbY, rotateX: springX, rotateY: springY }}>
+      <motion.div
+        className="orbital-core"
+        style={{ x: orbX, y: orbY, rotateX: springX, rotateY: springY }}
+      >
         <div className="orb-glow" />
         <div className="orb-surface">
           <span className="orb-highlight" />
@@ -133,7 +155,9 @@ export default function Home() {
       const current = sectionIds.reduce((visible, id) => {
         const section = document.getElementById(id);
         if (!section) return visible;
-        return section.getBoundingClientRect().top <= window.innerHeight * 0.34 ? id : visible;
+        return section.getBoundingClientRect().top <= window.innerHeight * 0.34
+          ? id
+          : visible;
       }, "top");
       setActiveSection(current);
     };
@@ -143,14 +167,19 @@ export default function Home() {
   }, []);
 
   const jumpTo = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    document
+      .getElementById(id)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMenuOpen(false);
   };
 
   return (
     <main className="orbit-page">
       <div className="ambient-grain" />
-      <div className="scroll-progress" style={{ transform: `scaleX(${scrollProgress})` }} />
+      <div
+        className="scroll-progress"
+        style={{ transform: `scaleX(${scrollProgress})` }}
+      />
       <aside className="section-rail" aria-label="Section index">
         <div className="rail-label">orbit / frame</div>
         {[
@@ -159,63 +188,122 @@ export default function Home() {
           ["approach", "03", "method"],
           ["contact", "04", "contact"],
         ].map(([id, number, label]) => (
-          <button key={id} className={activeSection === id ? "is-current" : ""} onClick={() => jumpTo(id)} aria-label={`Go to ${label}`}>
-            <span>{number}</span><i /><b>{label}</b>
+          <button
+            key={id}
+            className={activeSection === id ? "is-current" : ""}
+            onClick={() => jumpTo(id)}
+            aria-label={`Go to ${label}`}
+          >
+            <span>{number}</span>
+            <i />
+            <b>{label}</b>
           </button>
         ))}
-        <div className="rail-end"><span /> calibrated</div>
+        <div className="rail-end">
+          <span /> calibrated
+        </div>
       </aside>
 
       <header className={`site-header ${menuOpen ? "menu-is-open" : ""}`}>
-        <button className="brand-lockup" onClick={() => jumpTo("top")} aria-label="Orbit home">
+        <button
+          className="brand-lockup"
+          onClick={() => jumpTo("top")}
+          aria-label="Orbit home"
+        >
           <img src={markImage} alt="" className="brand-mark" />
-          <span className="brand-name">orbit<span className="brand-dot">.</span></span>
+          <span className="brand-name">
+            orbit<span className="brand-dot">.</span>
+          </span>
         </button>
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <button onClick={() => jumpTo("work")}>Selected work <span>02</span></button>
-          <button onClick={() => jumpTo("approach")}>Approach <span>03</span></button>
-          <button onClick={() => jumpTo("contact")}>Contact <span>04</span></button>
+          <button onClick={() => jumpTo("work")}>
+            Selected work <span>02</span>
+          </button>
+          <button onClick={() => jumpTo("approach")}>
+            Approach <span>03</span>
+          </button>
+          <button onClick={() => jumpTo("contact")}>
+            Contact <span>04</span>
+          </button>
         </nav>
         <div className="header-meta">
-          <span className="availability"><i /> available for select projects</span>
-          <button className="menu-toggle" aria-label={menuOpen ? "Close menu" : "Open menu"} onClick={() => setMenuOpen((open) => !open)}>
+          <span className="availability">
+            <i /> available for select projects
+          </span>
+          <button
+            className="menu-toggle"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen(open => !open)}
+          >
             {menuOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
         </div>
         {menuOpen && (
           <nav className="mobile-nav" aria-label="Mobile navigation">
-            <button onClick={() => jumpTo("work")}>Selected work <span>02</span></button>
-            <button onClick={() => jumpTo("approach")}>Approach <span>03</span></button>
-            <button onClick={() => jumpTo("contact")}>Contact <span>04</span></button>
+            <button onClick={() => jumpTo("work")}>
+              Selected work <span>02</span>
+            </button>
+            <button onClick={() => jumpTo("approach")}>
+              Approach <span>03</span>
+            </button>
+            <button onClick={() => jumpTo("contact")}>
+              Contact <span>04</span>
+            </button>
           </nav>
         )}
       </header>
 
       <section id="top" className="hero-section">
-        <div className="hero-image-layer" style={{ backgroundImage: `url(${heroImage})` }} />
+        <div
+          className="hero-image-layer"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        />
         <div className="hero-topline section-frame">
           <span>Independent designer / developer</span>
           <span>New York · Worldwide</span>
         </div>
         <div className="hero-layout section-frame">
           <div className="hero-copy">
-            <motion.p className="eyebrow" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }}>
+            <motion.p
+              className="eyebrow"
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+            >
               Creative technology / 2026
             </motion.p>
-            <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18, duration: 0.8 }}>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.18, duration: 0.8 }}
+            >
               I make complex
               <span>ideas legible</span>
               <em>in motion.</em>
             </motion.h1>
-            <motion.p className="hero-intro" initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.38, duration: 0.7 }}>
-              Orbit is the independent practice of Maya Chen — a designer and developer shaping identities, interfaces, and digital worlds with a pulse.
+            <motion.p
+              className="hero-intro"
+              initial={{ opacity: 0, y: 22 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.38, duration: 0.7 }}
+            >
+              Orbit is the independent practice of Maya Chen — a designer and
+              developer shaping identities, interfaces, and digital worlds with
+              a pulse.
             </motion.p>
-            <motion.div className="hero-actions" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.52, duration: 0.65 }}>
+            <motion.div
+              className="hero-actions"
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.52, duration: 0.65 }}
+            >
               <button className="signal-button" onClick={() => jumpTo("work")}>
                 <span>Enter the signal</span>
                 <ArrowDownRight size={18} />
               </button>
-              <span className="scroll-note"><MouseLine /> scroll to explore</span>
+              <span className="scroll-note">
+                <MouseLine /> scroll to explore
+              </span>
             </motion.div>
           </div>
           <div className="hero-visual-wrap">
@@ -223,25 +311,48 @@ export default function Home() {
           </div>
         </div>
         <div className="hero-bottomline section-frame">
-          <span className="hero-scroll-index">01 <span className="index-rule" /> 04</span>
-          <span className="hero-note">A portfolio in orbit around the useful, the strange, and the beautifully unfinished.</span>
+          <span className="hero-scroll-index">
+            01 <span className="index-rule" /> 04
+          </span>
+          <span className="hero-note">
+            A portfolio in orbit around the useful, the strange, and the
+            beautifully unfinished.
+          </span>
           <span className="hero-side-mark">⌁</span>
         </div>
       </section>
 
-      <section className="intro-strip section-frame" aria-label="Practice statement">
-        <div className="strip-marker"><Circle size={8} fill="currentColor" /> signal / 00</div>
-        <p>Good design does not simplify the world.<br /><strong>It gives people a better way through it.</strong></p>
-        <span className="strip-arrow"><ArrowDownRight size={22} /></span>
+      <section
+        className="intro-strip section-frame"
+        aria-label="Practice statement"
+      >
+        <div className="strip-marker">
+          <Circle size={8} fill="currentColor" /> signal / 00
+        </div>
+        <p>
+          Good design does not simplify the world.
+          <br />
+          <strong>It gives people a better way through it.</strong>
+        </p>
+        <span className="strip-arrow">
+          <ArrowDownRight size={22} />
+        </span>
       </section>
 
       <section id="work" className="work-section section-frame">
         <div className="section-heading">
           <div>
             <p className="eyebrow">Selected work / 02</p>
-            <h2>Signals<br /><span>in the wild.</span></h2>
+            <h2>
+              Signals
+              <br />
+              <span>in the wild.</span>
+            </h2>
           </div>
-          <p className="section-description">A selection of identities, products, and digital experiences made with people who prefer the sharp route to the obvious one.</p>
+          <p className="section-description">
+            A selection of identities, products, and digital experiences made
+            with people who prefer the sharp route to the obvious one.
+          </p>
         </div>
 
         <div className="project-list" ref={trackRef}>
@@ -263,12 +374,19 @@ export default function Home() {
                 <h3>{project.title}</h3>
                 <p className="project-type">{project.type}</p>
                 <p className="project-description">{project.description}</p>
-                <button className="project-link" aria-label={`View ${project.title} project`}>
-                  <span>View case study</span><ArrowUpRight size={18} />
+                <button
+                  className="project-link"
+                  aria-label={`View ${project.title} project`}
+                >
+                  <span>View case study</span>
+                  <ArrowUpRight size={18} />
                 </button>
               </div>
               <div className={`project-image-wrap tone-${project.tone}`}>
-                <div className={`specimen-art specimen-${index + 1}`} aria-hidden="true">
+                <div
+                  className={`specimen-art specimen-${index + 1}`}
+                  aria-hidden="true"
+                >
                   <span className="specimen-disc" />
                   <span className="specimen-arc arc-a" />
                   <span className="specimen-arc arc-b" />
@@ -276,14 +394,20 @@ export default function Home() {
                   <span className="specimen-marker" />
                   <span className="specimen-gridlines" />
                 </div>
-                <span className="project-image-label">orbit / {project.index} · specimen</span>
+                <span className="project-image-label">
+                  orbit / {project.index} · specimen
+                </span>
               </div>
             </motion.article>
           ))}
         </div>
         <div className="work-footer">
-          <span><ScanLine size={14} /> more work available on request</span>
-          <button onClick={() => jumpTo("contact")}>Ask for the archive <ArrowUpRight size={16} /></button>
+          <span>
+            <ScanLine size={14} /> more work available on request
+          </span>
+          <button onClick={() => jumpTo("contact")}>
+            Ask for the archive <ArrowUpRight size={16} />
+          </button>
         </div>
       </section>
 
@@ -291,9 +415,19 @@ export default function Home() {
         <div className="section-frame approach-inner">
           <div className="approach-intro">
             <p className="eyebrow">Approach / 03</p>
-            <h2>Make the<br /><span>signal clear.</span></h2>
-            <p>I start below the brief, where the useful question is usually quieter. Then I build a system that can hold a point of view, carry a feeling, and still work when the spotlight moves.</p>
-            <button className="text-button" onClick={() => jumpTo("contact")}>More about the practice <ArrowUpRight size={16} /></button>
+            <h2>
+              Make the
+              <br />
+              <span>signal clear.</span>
+            </h2>
+            <p>
+              I start below the brief, where the useful question is usually
+              quieter. Then I build a system that can hold a point of view,
+              carry a feeling, and still work when the spotlight moves.
+            </p>
+            <button className="text-button" onClick={() => jumpTo("contact")}>
+              More about the practice <ArrowUpRight size={16} />
+            </button>
           </div>
           <div className="services-list">
             {services.map(([number, title, description]) => (
@@ -309,27 +443,66 @@ export default function Home() {
       </section>
 
       <section className="manifesto-section section-frame">
-        <div className="manifesto-orbit" aria-hidden="true"><span /><span /><span /></div>
+        <div className="manifesto-orbit" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
         <div className="manifesto-copy">
           <p className="eyebrow">Working note / ∞</p>
-          <h2>Keep the strange<br /><em>part.</em></h2>
+          <h2>
+            Keep the strange
+            <br />
+            <em>part.</em>
+          </h2>
           <p>That is usually where the useful idea is hiding.</p>
         </div>
-        <div className="manifesto-side"><Move3d size={16} /><span>Curiosity is a<br />production method.</span></div>
+        <div className="manifesto-side">
+          <Move3d size={16} />
+          <span>
+            Curiosity is a<br />
+            production method.
+          </span>
+        </div>
       </section>
 
       <footer id="contact" className="site-footer">
         <div className="section-frame footer-inner">
-          <div className="footer-topline"><span>Contact / 04</span><span>Signal received 2026</span></div>
+          <div className="footer-topline">
+            <span>Contact / 04</span>
+            <span>Signal received 2026</span>
+          </div>
           <div className="footer-copy">
             <p className="eyebrow">Have a signal to send?</p>
-            <h2>Let’s make<br /><span>something move.</span></h2>
-            <a className="footer-email" href="mailto:hello@orbit.studio">hello@orbit.studio <ArrowUpRight size={20} /></a>
+            <h2>
+              Let’s make
+              <br />
+              <span>something move.</span>
+            </h2>
+            <a className="footer-email" href="mailto:hello@orbit.studio">
+              hello@orbit.studio <ArrowUpRight size={20} />
+            </a>
           </div>
           <div className="footer-bottomline">
-            <div className="footer-brand"><img src={markImage} alt="" className="brand-mark" /><span>orbit<span className="brand-dot">.</span></span></div>
-            <span>© 2026 Maya Chen</span>
-            <div className="footer-links"><a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://www.are.na" target="_blank" rel="noreferrer">Are.na</a></div>
+            <div className="footer-brand">
+              <img src={markImage} alt="" className="brand-mark" />
+              <span>
+                orbit<span className="brand-dot">.</span>
+              </span>
+            </div>
+            <span>© 2020 orbit.fmdstudio</span>
+            <div className="footer-links">
+              <a
+                href="https://www.linkedin.comhttps://fmdstudio.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                fmdstudio
+              </a>
+              <a href="https://www.are.na" target="_blank" rel="noreferrer">
+                Are.na
+              </a>
+            </div>
           </div>
         </div>
       </footer>
@@ -338,5 +511,9 @@ export default function Home() {
 }
 
 function MouseLine() {
-  return <span className="mouse-line" aria-hidden="true"><span /></span>;
+  return (
+    <span className="mouse-line" aria-hidden="true">
+      <span />
+    </span>
+  );
 }
