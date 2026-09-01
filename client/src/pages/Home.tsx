@@ -490,10 +490,10 @@ export default function Home() {
                 orbit<span className="brand-dot">.</span>
               </span>
             </div>
-            <span>© 2020 orbit.fmdstudio</span>
+            <span>© 2026 fuadModaresiRad orbit.fmdstudio</span>
             <div className="footer-links">
               <a
-                href="https://www.linkedin.comhttps://fmdstudio.vercel.app/"
+                href="https://fmdstudio.vercel.app/"
                 target="_blank"
                 rel="noreferrer"
               >
