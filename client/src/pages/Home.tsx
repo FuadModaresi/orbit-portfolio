@@ -287,7 +287,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.38, duration: 0.7 }}
             >
-              Orbit is the independent practice of Maya Chen — a designer and
+              Orbit is the independent practice of Fuad M Rad — a designer and
               developer shaping identities, interfaces, and digital worlds with
               a pulse.
             </motion.p>
