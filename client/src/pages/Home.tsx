@@ -479,8 +479,8 @@ export default function Home() {
               <br />
               <span>something move.</span>
             </h2>
-            <a className="footer-email" href="mailto:hello@orbit.studio">
-              hello@orbit.studio <ArrowUpRight size={20} />
+            <a className="footer-email" href="https://fmdstudio.vercel.app/">
+              rbit.fmdstudio <ArrowUpRight size={20} />
             </a>
           </div>
           <div className="footer-bottomline">
