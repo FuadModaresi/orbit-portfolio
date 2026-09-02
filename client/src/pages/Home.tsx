@@ -480,7 +480,7 @@ export default function Home() {
               <span>something move.</span>
             </h2>
             <a className="footer-email" href="https://fmdstudio.vercel.app/">
-              rbit.fmdstudio <ArrowUpRight size={20} />
+              Orbit.fmdstudio <ArrowUpRight size={20} />
             </a>
           </div>
           <div className="footer-bottomline">
