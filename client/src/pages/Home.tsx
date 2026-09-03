@@ -338,8 +338,10 @@ export default function Home() {
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
     setMenuOpen(false);
   };
-  const toggleLanguage = () =>
+  const toggleLanguage = () => {
     setLanguage(current => (current === "en" ? "fa" : "en"));
+    setMenuOpen(false);
+  };
 
   return (
     <main className={`orbit-page ${language === "fa" ? "is-persian" : ""}`}>
